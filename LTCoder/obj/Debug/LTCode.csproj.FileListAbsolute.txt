@@ -1,0 +1,5 @@
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\LTCoder\bin\Debug\LTCoder.dll
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\LTCoder\bin\Debug\LTCoder.pdb
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\LTCoder\obj\Debug\LTCode.csprojResolveAssemblyReference.cache
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\LTCoder\obj\Debug\LTCoder.dll
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\LTCoder\obj\Debug\LTCoder.pdb

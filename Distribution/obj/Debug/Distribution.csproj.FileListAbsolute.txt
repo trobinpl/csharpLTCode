@@ -1,0 +1,5 @@
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\Distribution\bin\Debug\Distribution.dll
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\Distribution\bin\Debug\Distribution.pdb
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\Distribution\obj\Debug\Distribution.csprojResolveAssemblyReference.cache
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\Distribution\obj\Debug\Distribution.dll
+D:\_Trobin\Studia\IX semestr\Kodowanie\LTCode\Distribution\obj\Debug\Distribution.pdb
