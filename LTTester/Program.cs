@@ -1,6 +1,7 @@
 ﻿using Distribution;
 using LTCoder;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,8 +14,11 @@ namespace LTTester
 	{
 		static void Main(string[] args)
 		{
-			FileHandler handler = new FileHandler("results.txt", 30);
-			List<FileSegment> segments = handler.GetRandomSegments(3);
+			FileHandler handler = new FileHandler("results.txt", 100);
+			List<FileSegment> segments = handler.GetRandomSegments(2);
+
+			Coder coder = new Coder(segments);
+			CodedPiece codedPiece = coder.CodeSegments();
 
 
 			//RobustSolitonDistribution distribution = new RobustSolitonDistribution(30, 0.2, 0.05);
@@ -51,8 +55,6 @@ namespace LTTester
 			//	writer.WriteLine("{0},{1}", pair.Key, pair.Value);
 			//}
 			//writer.Close();
-            Console.WriteLine("KONIEC");
-			Console.ReadKey();
 		}
 	}
 }
