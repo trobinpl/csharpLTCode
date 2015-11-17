@@ -70,12 +70,31 @@ namespace Distribution
 			return sum;
 		}
 
-		public double GetValue(int i)
+		private double GetValue(int i)
 		{
 			double tau = GetTau(i);
 			double ideal = IdealSolitonValue(i);
 			double beta = CalculateBeta();
             return (tau + ideal) / beta;
+		}
+
+		private List<WeightProbability> Zones()
+		{
+			List<WeightProbability> zones = new List<WeightProbability>();
+			for (int i = 1; i <= this.numberOfFileSegments; i++)
+			{
+				double value = this.GetValue(i);
+				WeightProbability probability = new WeightProbability(i, value);
+				zones.Add(probability);
+			}
+			return zones;
+		}
+
+		public int NextWeight(double random)
+		{
+			List<WeightProbability> probabilities = this.Zones();
+			List<CumulativeWeightProbability> cumulated = probabilities.CumulativeSum().ToList();
+			return cumulated.First(m => random < m.CumulativeProbability).Weight;
 		}
 	}
 }

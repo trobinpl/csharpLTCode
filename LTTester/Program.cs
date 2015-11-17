@@ -3,30 +3,42 @@ using LTCoder;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LTTester
+namespace Distribution
 {
 	class Program
 	{
+		static int segmentsCount = 1000;
 		static void Main(string[] args)
 		{
-			FileHandler handler = new FileHandler("results.txt", 100);
-			List<FileSegment> segments = handler.GetRandomSegments(2);
+			Random rand = new Random();
+			RobustSolitonDistribution distribution = new RobustSolitonDistribution(segmentsCount, 0.2, 0.05);
+			FileHandler handler = new FileHandler("results.txt", segmentsCount);
 
-			Coder coder = new Coder(segments);
-			CodedPiece codedPiece = coder.CodeSegments();
-
-
+			for (int i = 0; i < 100; i++)
+			{
+				int nextWeight = distribution.NextWeight(rand.NextDouble());
+				List<FileSegment> segments = handler.GetRandomSegments(nextWeight);
+				Coder coder = new Coder(segments);
+				CodedPiece codedPiece = coder.CodeSegments();
+				foreach (bool bit in codedPiece.CodedWord)
+				{
+					Debug.Write((bit ? 1 : 0));
+				}
+				Debug.WriteLine("");
+			}
+			
 			//RobustSolitonDistribution distribution = new RobustSolitonDistribution(30, 0.2, 0.05);
 			//List<WeightProbability> zones = new List<WeightProbability>();
 			//Dictionary<int, int> howMuch = new Dictionary<int, int>();
-			//Random rand = new Random();
+			
 			//double random;
-			//for (int i = 1; i <= 30; i++)
+			//for (int i = 1; i <= 100; i++)
 			//{
 			//	double value = distribution.GetValue(i);
 			//	WeightProbability prop = new WeightProbability(i, value);
@@ -34,23 +46,21 @@ namespace LTTester
 			//}
 
 			//var cumulated = zones.Select(p => p.Probability).CumulativeSum().Select((i, index) => new { i, index });
-			//for (int j=0; j<1000; j++)
+			//for (int j = 0; j < 5000; j++)
 			//{
-			//	random = rand.NextDouble();
-			//	var matchIndex = cumulated.First(m => random < m.i).index;
-			//	Console.WriteLine(zones[matchIndex].Weight);
-			//	if (howMuch.Keys.Contains(matchIndex))
+			//	int weight = distribution.NextWeight(rand.NextDouble());
+			//	if (howMuch.Keys.Contains(weight))
 			//	{
-			//		howMuch[matchIndex]++;
+			//		howMuch[weight]++;
 			//	}
 			//	else
 			//	{
-			//		howMuch[matchIndex] = 1;
+			//		howMuch[weight] = 1;
 			//	}
 			//}
 
-			//StreamWriter writer = new StreamWriter("results.txt");
-			//foreach(KeyValuePair<int, int> pair in howMuch)
+			//StreamWriter writer = new StreamWriter("results2.txt");
+			//foreach (KeyValuePair<int, int> pair in howMuch.OrderBy(k => k.Key))
 			//{
 			//	writer.WriteLine("{0},{1}", pair.Key, pair.Value);
 			//}
